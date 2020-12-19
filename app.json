@@ -1,0 +1,12 @@
+{
+  "name": "Transporteris",
+  "displayName": "Transporteris",
+  "expo": {
+    "name": "Transporteris",
+    "slug": "Transporteris",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
