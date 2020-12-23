@@ -35,8 +35,8 @@ const RentHistoryItem = props => {
                         'Brand: ' + transport.brand + '\n' +
                         'Model: ' + transport.model + '\n' +
                         'Year: ' + transport.year + '\n' +
-                        'Reservation time: ' + props.data.reservationTimeMins + ' mins\n' +
-                        'Rent time: ' + props.data.rentTimeMins + ' mins\n' +
+                        'Reservation time: ' + (props.data.reservationTimeMins ? props.data.reservationTimeMins : '0') + ' mins\n' +
+                        'Rent time: ' + (props.data.rentTimeMins ? props.data.rentTimeMins : '0') + ' mins\n' +
                         'Rent price: ' + props.data.rentPrice + ' EUR\n' +
                         'Rented at: ' + moment(props.data.rentStart).format('YYYY-MM-DD HH:mm')
                     }

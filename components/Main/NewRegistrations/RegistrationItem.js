@@ -5,9 +5,7 @@ import Button from '../../common/Button';
 const RegistrationItem = props => {
 
     const onCheck = () => {
-        console.log('onCheck');
         if(props.setUserCheckId && props.changeMainPage) {
-            console.log('onCheck2');
             props.setUserCheckId(props.id);
             props.changeMainPage('check-registration');
         }

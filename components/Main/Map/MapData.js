@@ -111,7 +111,6 @@ const transportTypes = [
 ];
 
 export function getAllTransports(filter) {
-    console.log('getAllTransports filter = ' + filter);
     if(!filter)
         return transports;
     else
@@ -143,7 +142,6 @@ export function setTransportReserved(transportId, userId) {
     transports[tId].userId = userId;
     transports[tId].isReserved = true;
     transports[tId].reserveStart = moment();
-    console.log('setTransportReserved time: ' + transports[tId].reserveStart);
     return true;
 }
 
