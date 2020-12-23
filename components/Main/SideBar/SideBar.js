@@ -19,8 +19,17 @@ const SideBar = props => {
     }, [slideAnim]);
 
     const onCloseSideBar = () => {
-        if (props.toggleSideBar)
-            props.toggleSideBar(false);
+        Animated.timing(
+            slideAnim,
+            {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true
+            }
+        ).start(() => {
+            if (props.toggleSideBar)
+                props.toggleSideBar(false);
+        });
     };
 
     const onLogout = () => {

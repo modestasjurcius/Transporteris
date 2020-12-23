@@ -12,6 +12,7 @@ import { getCurrentUser } from '../../AuthenticationPages/Users';
 import TextRowItem from './TexRowItem';
 import Button from '../../common/Button';
 import moment from 'moment';
+import { Icon } from 'react-native-elements';
 
 const TransportFragment = props => {
     const slideAnim = useRef(new Animated.Value(0)).current;
@@ -76,6 +77,20 @@ const TransportFragment = props => {
         props.forceUpdate();
     }
 
+    const onCloseFragment = () => {
+        Animated.timing(
+            slideAnim,
+            {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true
+            }
+        ).start(() => {
+            if(props.setFragmentTransportId)
+                props.setFragmentTransportId(null);
+        });
+    }
+
     const renderButtons = () => {
         return (
             <View style={{
@@ -136,7 +151,16 @@ const TransportFragment = props => {
                 }
             }
         >
-            <Text style={styles.mainLabel}>{transport.brand + ' ' + transport.model}</Text>
+            <View style={styles.topRow}>
+                <View style={styles.rowSideElement}></View>
+                <Text style={styles.mainLabel}>{transport.brand + ' ' + transport.model}</Text>
+                <Icon
+                    style={styles.rowSideElement}
+                    name='downcircleo'
+                    type='ant-design'
+                    onPress={onCloseFragment}
+                />
+            </View>       
             <View style={styles.columnsContainer}>
                 <View style={styles.column}>
                     <TextRowItem labelText='Brand:' text={transport.brand} />
@@ -184,30 +208,37 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: 300,
     },
-    mainLabel: {
-        color: 'black',
-        borderColor: 'black',
-        borderTopWidth: 2,
-        borderBottomWidth: 2,
-        textAlign: 'center',
-        fontSize: 20,
-        marginBottom: 20,
-        backgroundColor: '#ee948e',
-        fontWeight: '700'
-    },
     columnsContainer: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
     column: {
-        height: 150,
-        //marginStart: 10
+        height: 150
     },
     buttonsContainer: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
+    },
+    mainLabel: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: '700'
+    },
+    rowSideElement: {
+        width: 30
+    },
+    topRow: {
+        flex: 0.3,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderColor: 'black',
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        backgroundColor: '#ee948e',
+        marginBottom: 20,
     }
 });
 

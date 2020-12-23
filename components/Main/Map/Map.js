@@ -26,7 +26,7 @@ const Map = props => {
                 logoEnabled={false}
             >
                 <MapboxGL.Camera 
-                    zoomLevel={15}
+                    zoomLevel={14.5}
                     centerCoordinate={[25.259881, 54.711504]}
                 />
                 {transportsData && transportsData.length > 0 &&
