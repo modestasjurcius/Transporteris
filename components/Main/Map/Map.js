@@ -3,14 +3,14 @@ import { View, StyleSheet } from 'react-native';
 import MapboxGL from "@react-native-mapbox-gl/maps";
 import { getAllTransports, userHasTransport } from './MapData';
 import { getCurrentUser } from '../../AuthenticationPages/Users';
-import { MAPS_API_KEY } from 'react-native-dotenv'
+import { MAPS_API_KEY } from '@env';
 
 const Map = props => {
     MapboxGL.setAccessToken(MAPS_API_KEY);
     MapboxGL.setConnected(true);
     MapboxGL.setTelemetryEnabled(false);
 
-    const transportsData = getAllTransports();
+    const transportsData = getAllTransports(props.transportFilterType);
     const user = getCurrentUser();
     const hasTransport = userHasTransport(user.id);
 

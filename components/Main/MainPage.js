@@ -27,6 +27,7 @@ const MainPage = props => {
     const [transportId, setTransportId] = useState(null);
     const [payData, setPayData] = useState(null);
     const [checkAnswerQuestionId, setCheckAnswerQuestionId] = useState(null);
+    const [transportFilterType, setTransportFilterType] = useState(null);
     const forceUpdate = useForceUpdate();
 
     const toggleSideBar = value => {
@@ -68,6 +69,15 @@ const MainPage = props => {
     const onCheckAnswer = questionId => {
         setCheckAnswerQuestionId(questionId);
         changeMainPage('answered-question');
+    }
+
+    const onFilterChanged = type => {
+        if(transportFilterType === type)
+            setTransportFilterType(null);
+        else
+            setTransportFilterType(type);
+            
+        forceUpdate();
     }
 
     const renderByPage = () => {
@@ -137,6 +147,7 @@ const MainPage = props => {
                         toggleSideBar={toggleSideBar}
                         isSideBarOpen={isSideBarOpen}
                         setTransportId={setFragmentTransportId}
+                        transportFilterType={transportFilterType}
                     />
                 );
         }
@@ -178,6 +189,8 @@ const MainPage = props => {
                 changeMainPage={changeMainPage}
                 isSideBarOpen={isSideBarOpen}
                 isMapOpen={mainPage === 'map'}
+                onFilterChanged={onFilterChanged}
+                transportFilterType={transportFilterType}
             />
             {renderByPage()}
         </View>

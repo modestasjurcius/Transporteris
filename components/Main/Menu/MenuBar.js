@@ -3,16 +3,20 @@ import { View, StyleSheet } from 'react-native';
 import MenuBarButton from './MenuBarButton';
 
 const MenuBar = props => {
-
     const toggleSideBar = value => {
         if (props.toggleSideBar)
             props.toggleSideBar(value);
-    }
+    };
 
     const changeMainPage = page => {
         if(props.changeMainPage)
             props.changeMainPage(page);
-    }
+    };
+
+    const setMapTransportFilterType = type => {
+        if(props.onFilterChanged)
+            props.onFilterChanged(type);
+    };
 
     return (
         <View style={styles.container}>
@@ -26,10 +30,14 @@ const MenuBar = props => {
                     <MenuBarButton
                         icon='car'
                         type='font-awesome-5'
+                        onPress={() => setMapTransportFilterType(1)}
+                        isPressed={props.transportFilterType === 1}
                     />
                     <MenuBarButton
                         icon='truck'
                         type='font-awesome-5'
+                        onPress={() => setMapTransportFilterType(2)}
+                        isPressed={props.transportFilterType === 2}
                     />
                     <MenuBarButton
                         icon='menu-fold'

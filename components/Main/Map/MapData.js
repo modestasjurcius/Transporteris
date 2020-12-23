@@ -13,9 +13,9 @@ const transports = [
         fuel: 85,
         isReserved: false,
         isRented: false,
-        isAvailableForRent: true,
         userId: null,
         position: [25.259347, 54.710892],
+        transportType: 1,
     },
     {
         id: 1,
@@ -29,9 +29,9 @@ const transports = [
         fuel: 65,
         isReserved: false,
         isRented: false,
-        isAvailableForRent: true,
         userId: null,
         position: [25.260085, 54.710733],
+        transportType: 1,
     },
     {
         id: 2,
@@ -45,9 +45,9 @@ const transports = [
         fuel: 45,
         isReserved: false,
         isRented: false,
-        isAvailableForRent: true,
         userId: null,
         position: [25.260688, 54.711031],
+        transportType: 1,
     },
     {
         id: 3,
@@ -61,14 +61,61 @@ const transports = [
         fuel: 95,
         isReserved: false,
         isRented: false,
-        isAvailableForRent: true,
         userId: null,
         position: [25.261697, 54.711192],
+        transportType: 1,
     },
-]
+    {
+        id: 4,
+        brand: 'Volkswagen',
+        model: 'Transporter',
+        year: '2010',
+        transmission: 'Automatic',
+        priceMin: 1.10,
+        priceKm: 0.50,
+        reservePrice: 0.20,
+        fuel: 45,
+        isReserved: false,
+        isRented: false,
+        userId: null,
+        position: [25.262498, 54.711615],
+        transportType: 2,
+    },
+    {
+        id: 5,
+        brand: 'Volkswagen',
+        model: 'Transporter',
+        year: '2010',
+        transmission: 'Automatic',
+        priceMin: 1.10,
+        priceKm: 0.50,
+        reservePrice: 0.20,
+        fuel: 75,
+        isReserved: false,
+        isRented: false,
+        userId: null,
+        position: [25.262329, 54.711784],
+        transportType: 2,
+    }
+];
 
-export function getAllTransports() {
-    return transports;
+const transportTypes = [
+    {
+        value: 1,
+        label: 'automobile'
+    },
+    {
+        value: 2,
+        label: 'minibus'
+    }
+];
+
+export function getAllTransports(filter) {
+    console.log('getAllTransports filter = ' + filter);
+    if(!filter)
+        return transports;
+    else
+        return transports.filter(t => t.transportType === filter);
 }
 
 export function getTransportById(id) {
@@ -87,7 +134,6 @@ export function setTransportRented(transportId, userId) {
     transports[tId].userId = userId;
     transports[tId].isReserved = false;
     transports[tId].isRented = true;
-    transports[tId].isAvailableForRent = false;
     transports[tId].rentStart = moment();
     return true;
 }
@@ -96,7 +142,6 @@ export function setTransportReserved(transportId, userId) {
     const tId = transports.findIndex(t => t.id === transportId);
     transports[tId].userId = userId;
     transports[tId].isReserved = true;
-    transports[tId].isAvailableForRent = false;
     transports[tId].reserveStart = moment();
     console.log('setTransportReserved time: ' + transports[tId].reserveStart);
     return true;

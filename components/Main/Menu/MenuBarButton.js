@@ -5,7 +5,10 @@ import { Icon } from 'react-native-elements';
 const MenuBarButton = props => {
     return (
         <Pressable 
-            style={styles.btn}
+            style={{
+                ...styles.btn,
+                borderWidth: props.isPressed ? 2 : 0
+            }}
             onPress={props.onPress}
         >
             <Icon 
@@ -23,10 +26,10 @@ const styles = StyleSheet.create({
         height: 55,
         backgroundColor: '#fff',
         borderRadius: 50,
-        borderColor: '#ee948e'
+        borderColor: 'black'
     },
     icon: {
-        margin: 12
+        marginTop: 14
     }
 });
 
